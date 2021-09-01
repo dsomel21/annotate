@@ -1,2 +1,2 @@
 # annotate
-ReactJS tool for highlight text 📝 (to help create annotations 💭) 
+ReactJS tool for highlighting text 📝 (to help create annotations 💭) 
