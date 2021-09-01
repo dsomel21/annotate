@@ -13,7 +13,7 @@ const Annotate = (props) => {
   return (
     <>
       {text.map((line) => (
-        <AnnotateString line={line} />
+        <AnnotateString line={line} selectionType={props.selectionType} />
       ))}
     </>
   );

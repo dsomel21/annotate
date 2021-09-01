@@ -21,7 +21,7 @@ function App() {
         <br />
         <hr />
 
-        <Annotate>
+        <Annotate selectionType='FULL_STRING'>
           <p key={10}>ਸ਼੍ਰੀ ਸਤਿਗੁਰੁ ਨਦ ਤੇ ਉਤਰਿ, ਆਇ ਦਮਦਮੇ ਥਾਨ</p>
           <p key={11}>ਧਰਮਸਾਲ ਸੁੰਦਰ ਰਚੀ, ਮਿਲੇ ਸਿੱਖ੍ਯ ਗਨ ਆਨ</p>
         </Annotate>
