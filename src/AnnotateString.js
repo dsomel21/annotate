@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 const AnnotateString = (props) => {
   if (props) console.log('props.selectionType', props.selectionType);
 
-  const [selectionType, setSelectionType] = useState(
-    props.selectionType || 'FULL_STRING'
-  );
+  const [selectionType, setSelectionType] = useState(props.selectionType || 'FULL_STRING');
   //  /\r|\n/
   const containsLineBreak = (text) => /\r|\n/.exec(text) !== null;
 
@@ -29,14 +27,13 @@ const AnnotateString = (props) => {
     let forward = false;
 
     console.log('selectionType is: ', selectionType);
-    debugger;
 
     selectify(selectionObj);
   };
 
   // Modifies the existing window.Selection
   const selectify = (selectionObj) => {
-    const { anchorNode, anchorOffset } = selectionObj;
+    const { anchorNode, anchorOffset, focusOffset } = selectionObj;
     const { wholeText } = anchorNode;
     const selectionText = selectionObj.toString();
     switch (selectionType) {
@@ -47,19 +44,29 @@ const AnnotateString = (props) => {
         break;
       case 'FULL_WORDS': // No trailing, preceding whitespace, punctuation
         let leftOffset = anchorOffset;
+        let rightOffset = focusOffset;
         if (startsEmpty(selectionText)) {
           // Move the leftOffset forward, because there may be preceding whitespace, punctuation, etc.
           while (charIsEmpty(wholeText[leftOffset])) leftOffset++;
         } else if (leftOffset > 0) {
           // Move the leftOffset back, because there may be letters towards the left of it
-          while (!charIsEmpty(wholeText[leftOffset - 1])) leftOffset--;
+          while (!charIsEmpty(wholeText[leftOffset - 1]) && leftOffset > 0) leftOffset--;
         }
 
         if (endsEmpty(selectionText)) {
-          while (charIsEmpty(wholeText[leftOffset])) leftOffset++;
+          // Move the rightOffset back, because there may be TRAILING whitespace, punctuation, etc.
+          while (charIsEmpty(wholeText[rightOffset])) rightOffset--;
+        } else if (rightOffset < wholeText.length) {
+          while (!charIsEmpty(wholeText[rightOffset + 1]) && rightOffset < wholeText.length)
+            rightOffset++;
         }
 
         debugger;
+        let range = document.createRange();
+        range.setStart(anchorNode, leftOffset);
+        range.setEnd(anchorNode, Math.min(rightOffset + 1, wholeText.length));
+        selectionObj.removeAllRanges();
+        selectionObj.addRange(range);
         break;
       default:
         selectionObj.modify('extend', 'left', 'paragraphboundary');

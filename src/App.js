@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Annotate from './Annotate';
 function App() {
-  const randomSpace = `  .  `;
+  const randomSpace = `.`;
   return (
     <div className='App'>
       <header className='App-header'>
@@ -22,6 +22,8 @@ function App() {
         <br />
 
         <Annotate selectionType='FULL_WORDS'>
+          <p key={1222}>DIlraj has a cool fast mustang shelby</p>
+
           <p key={10}>
             ਸ਼੍ਰੀ ਸਤਿਗੁਰੁ ਨਦ ਤੇ ਉਤਰਿ,,, {randomSpace} ਆਇ ਦਮਦਮੇ ਥਾਨ? !
           </p>
