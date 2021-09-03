@@ -12,23 +12,11 @@ const AnnotateString = (props) => {
   const endsEmpty = (text) => NON_VALUE_CHARS.includes(text[text.length - 1]);
   const charIsEmpty = (char) => NON_VALUE_CHARS.includes(char);
 
-  const isBeginningOfWord = (str, index) => {
-    if (index <= 0 || str[index - 1]) return true;
-  };
-
   const onMouseUpHandler = (e) => {
     const selectionObj = window.getSelection && window.getSelection();
     if (!selectionObj.toString()) return;
-    const anchorNode = selectionObj.anchorNode;
-    const focusNode = selectionObj.focusNode;
-    const anchorOffset = selectionObj.anchorOffset;
-    const focusOffset = selectionObj.focusOffset;
-    const position = anchorNode.compareDocumentPosition(focusNode);
-    let forward = false;
 
-    console.log('selectionType is: ', selectionType);
-
-    selectify(selectionObj);
+    return selectify(selectionObj);
   };
 
   // Modifies the existing window.Selection
@@ -44,7 +32,7 @@ const AnnotateString = (props) => {
         break;
       case 'FULL_WORDS': // No trailing, preceding whitespace, punctuation
         let leftOffset = anchorOffset;
-        let rightOffset = focusOffset;
+        let rightOffset = focusOffset - 1;
         if (startsEmpty(selectionText)) {
           // Move the leftOffset forward, because there may be preceding whitespace, punctuation, etc.
           while (charIsEmpty(wholeText[leftOffset])) leftOffset++;
@@ -60,8 +48,8 @@ const AnnotateString = (props) => {
           while (!charIsEmpty(wholeText[rightOffset + 1]) && rightOffset < wholeText.length)
             rightOffset++;
         }
-
-        debugger;
+        const w = wholeText.slice(leftOffset, rightOffset + 1);
+        console.log(w);
         let range = document.createRange();
         range.setStart(anchorNode, leftOffset);
         range.setEnd(anchorNode, Math.min(rightOffset + 1, wholeText.length));
@@ -73,6 +61,7 @@ const AnnotateString = (props) => {
         selectionObj.modify('extend', 'right', 'paragraphboundary');
         break;
     }
+    return window.getSelection();
   };
 
   return (
