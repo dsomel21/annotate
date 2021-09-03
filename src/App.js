@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Annotate from './Annotate';
 function App() {
+  const randomSpace = `  .  `;
   return (
     <div className='App'>
       <header className='App-header'>
@@ -19,16 +20,19 @@ function App() {
         </a>
         <br />
         <br />
-        <hr />
 
-        <Annotate selectionType='FULL_STRING'>
-          <p key={10}>ਸ਼੍ਰੀ ਸਤਿਗੁਰੁ ਨਦ ਤੇ ਉਤਰਿ, ਆਇ ਦਮਦਮੇ ਥਾਨ</p>
+        <Annotate selectionType='FULL_WORDS'>
+          <p key={10}>
+            ਸ਼੍ਰੀ ਸਤਿਗੁਰੁ ਨਦ ਤੇ ਉਤਰਿ,,, {randomSpace} ਆਇ ਦਮਦਮੇ ਥਾਨ? !
+          </p>
           <p key={11}>ਧਰਮਸਾਲ ਸੁੰਦਰ ਰਚੀ, ਮਿਲੇ ਸਿੱਖ੍ਯ ਗਨ ਆਨ</p>
         </Annotate>
+        <Annotate selectionType='FULL_STRING'>
+          <p key={12}>ਜਹਿਂ ਧੋਬਨਿ ਕੋ ਬ੍ਰਿੱਛ ਟਿਕਾਯਹੁ</p>
+          <p key={13}>ਏਕ ਗ੍ਰਾਮ ਤੌ ਤਹਾਂ ਬਸਾਯਹੁ</p>
+          <p key={14}>ਅਪਰ ਥਾਨ ਖੰਜਰ ਜੋ ਲਹ੍ਯੋ</p>
+        </Annotate>
 
-        <p>ਜਹਿਂ ਧੋਬਨਿ ਕੋ ਬ੍ਰਿੱਛ ਟਿਕਾਯਹੁ</p>
-        <p>ਏਕ ਗ੍ਰਾਮ ਤੌ ਤਹਾਂ ਬਸਾਯਹੁ</p>
-        <p>ਅਪਰ ਥਾਨ ਖੰਜਰ ਜੋ ਲਹ੍ਯੋ</p>
         <p>ਅਵਨੀ ਬਿਖੈ ਗਾਡ ਸੋ ਦਯ</p>
         <p>ਤਹਿਂ ਇਕ ਗ੍ਰਾਮ ਬਸਾਯੋ ਭਾਰੀ</p>
         <p>ਖੰਜਰ ਤਾਂ ਕੋ ਨਾਮ ਉਚਾਰੀ</p>
