@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import Annotate from './Annotate';
 function App() {
+  const handleSelect = selection => {
+    debugger;
+  };
+
   return (
     <div className='App'>
       <header className='App-header'>
@@ -19,7 +23,7 @@ function App() {
         </a>
         <br />
 
-        <Annotate selectionType='FULL_WORDS'>
+        <Annotate selectionType='FULL_WORDS' onSelect={handleSelect}>
           <p key={10}>ਸ਼੍ਰੀ ਸਤਿਗੁਰੁ ਨਦ ਤੇ ਉਤਰਿ,,,,, ਆਇ ਦਮਦਮੇ ਥਾਨ? !</p>
           <p key={11}>ਧਰਮਸਾਲ ਸੁੰਦਰ ਰਚੀ, ਮਿਲੇ ਸਿੱਖ੍ਯ ਗਨ ਆਨ</p>
         </Annotate>

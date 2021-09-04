@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import AnnotateString from './AnnotateString';
 
-const Annotate = (props) => {
+const Annotate = props => {
   const [text, setText] = useState(
-    props.children.map((element) => ({
+    props.children.map(element => ({
       key: element.key,
       text: element.props.children,
       child: element,
@@ -12,11 +12,12 @@ const Annotate = (props) => {
 
   return (
     <>
-      {text.map((line) => (
+      {text.map(line => (
         <AnnotateString
           key={line.key}
           line={line}
           selectionType={props.selectionType}
+          onSelectString={props.onSelect}
         />
       ))}
     </>

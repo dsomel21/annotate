@@ -17,13 +17,15 @@ const AnnotateString = props => {
     if (!selObj.toString()) return;
 
     const finalSelObj = selectify(selObj);
-    return {
+
+    // Pass props back down as argument
+    props.onSelectString({
       getSelection: finalSelObj,
       selectedText: finalSelObj.toString(),
       range: [finalSelObj.anchorOffset, finalSelObj.focusOffset],
       wholeText: finalSelObj.anchorNode.wholeText,
       target: e.target,
-    };
+    });
   };
 
   /* NOTE: Selection.modify is not fully supported */
