@@ -1,0 +1,1 @@
+monitorEvents($0, 'mouse') //in chrome: to see the mouse events
