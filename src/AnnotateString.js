@@ -34,6 +34,7 @@ const AnnotateString = props => {
     selObj.extend(anchorNode, anchorNode.textContent.length);
     // Selects everything to the LEFT of the beginning of the paragraph
     selObj.modify('extend', 'left', 'paragraphboundary');
+    // console.log("selObj: ", typeof(selObj), " ", selObj);
   };
 
   /* 

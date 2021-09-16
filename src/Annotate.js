@@ -11,7 +11,7 @@ const Annotate = props => {
   );
 
   return (
-    <>
+    <div className={`${props.selectionType}`}>
       {text.map(line => (
         <AnnotateString
           key={line.key}
@@ -20,7 +20,7 @@ const Annotate = props => {
           onSelectString={props.onSelect}
         />
       ))}
-    </>
+    </div>
   );
 };
 
